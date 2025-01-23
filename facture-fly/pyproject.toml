@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "facture-fly"
+version = "0.1.0"
+description = ""
+authors = ["masterivanic <masterivanic@gmail.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = {extras = ["standard"], version = "^0.115.7"}
+lato = "^0.12.0"
+
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^4.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
