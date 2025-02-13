@@ -10,10 +10,11 @@ export function Login() {
 
     const handleSubmit = async () => {
         try {
-            const response = await fetch('http://localhost:8000/api/auth/login/', {
+            const response = await fetch('http://127.0.0.1:8000/api/auth/login/', { 
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Accept': 'application/json',
                 },
                 body: JSON.stringify({ 
                     email: email.toLowerCase(), 
@@ -23,15 +24,14 @@ export function Login() {
     
             if (!response.ok) {
                 const errorData = await response.json();
-                throw new Error(errorData.detail || 'Authentification échouée');
+                throw new Error(errorData.detail || errorData.message || 'Authentification échouée');
             }
     
             const data = await response.json();
-            // Stocker le token JWT ici
             navigation.navigate('Home');
             
         } catch (error) {
-            Alert.alert('Erreur',  'Problème de connexion');
+            Alert.alert('Erreur', error.message || 'Problème de connexion');
         }
     };
 
